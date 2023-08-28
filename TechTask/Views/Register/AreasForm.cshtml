@@ -1,0 +1,60 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TechTask.Models.ViewModels.BusinessAreaViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-controller="Register" asp-action="ConfirmAreas" novalidate>
+    <div style="display: flex">
+        <div style="margin-left:60px">
+            <label class="label-address"><strong class="star">* </strong>Business Areas:</label>
+            <div style="text-align: left">
+                @* <input asp-for="@Model.Areas" type="hidden"/> *@
+                <br>
+                @for (int i = 0; i < Model.Areas.Count; i++)
+                {
+                    <input class="input-areas" asp-for="@Model.Areas[i].IsSelected" type="checkbox"/>
+                    <label class="input-areas" asp-for="@Model.Areas[i].IsSelected">@Model.Areas[i].Name</label>
+                    <input asp-for="@Model.Areas[i].Id" type="hidden"/>
+                    <input asp-for="@Model.Areas[i].Name" type="hidden"/>
+                    <br/>
+                }
+                <span asp-validation-for="Areas" id="areas" class="validation" style="display: inline;"></span>
+            </div>
+        </div>
+        <div style="margin-left:50px">
+            <label class="label-address" ><strong class="star">* </strong>Comments:</label>
+            <div>
+                <br>
+                <input style="height: 100px; width: 100px;" type="text" id="comments" asp-for="@Model.Comments" rows="8" class="textarea-size-none" required maxlength="250">
+                <span style="width: 12px; height: 12px" asp-validation-for="@Model.Comments" class="validation" data-title="Please leave some comments about your business"></span>
+            </div>
+        </div>
+    </div>
+    <div class="btn-div btn-style" style="display: flex">
+        <input value="Back" type="submit" onclick="prevClick()" asp-controller="Register" asp-action="ConfirmAreas" asp-route-button="prev">
+        <input value="Next" type="submit" onclick="nextClick()" asp-controller="Register" asp-action="ConfirmAreas" asp-route-button="next">
+    </div>
+</form>
+
+@{
+    bool flag = false;
+    foreach (var businessAreas in Model.Areas)
+    {
+        if (businessAreas.IsSelected)
+        {
+            flag = true;
+        }
+    }
+    if (!flag)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+            document.querySelector("#areas").style.display = 'block'
+            };
+        </script>
+    }
+}
+
+

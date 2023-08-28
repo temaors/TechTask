@@ -1,0 +1,64 @@
+@using CountryData.Standard
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model TechTask.Models.Entities.AddressViewModel?
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<form asp-controller="Register" asp-action="ConfirmAddress" novalidate>
+    <div class="div-flex">
+        <div>
+            <div class="div-form">
+                @{
+                    var helper = new CountryHelper();
+                    var selectList = new SelectList(helper.GetCountries());
+                    ViewBag.Countries = selectList;
+                    if (Model != null)
+                    {
+                        foreach (var country in selectList)
+                        {
+                            if (country.Value == Model.Country)
+                            {
+                                country.Selected = true;
+                            }
+                        }
+                        ViewBag.Salut = selectList;
+                    }
+                }
+                <label class="label-contact-info" asp-for="Country"><strong class="star">* </strong>COUNTRY:</label>
+                <select asp-for="Country" asp-items="ViewBag.Countries" style="width: 41%" required maxlength="50"></select>
+                <span asp-validation-for="Country" class="validation" data-title="Country is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="OfficeName"><strong class="star">* </strong>OFFICE NAME:</label>
+                <input type="text" asp-for="OfficeName" required maxlength="50"/>
+                <span asp-validation-for="OfficeName" class="validation" data-title="Office name is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Location"><strong class="star">* </strong>ADDRESS:</label>
+                <input type="text" asp-for="Location" required maxlength="150"/>
+                <span asp-validation-for="Location" class="validation" data-title="Address is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="PostalCode"><strong class="star">* </strong>POSTAL CODE:</label>
+                <input type="text" asp-for="PostalCode" required min="0" max="9999999"/>
+                <span asp-validation-for="PostalCode" class="validation" data-title="Postal code is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="City"><strong class="star">* </strong>CITY:</label>
+                <input type="text" asp-for="City" required maxlength="50"/>
+                <span asp-validation-for="City" class="validation" data-title="City is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="State"><strong class="star">* </strong>STATE:</label>
+                <input type="text" asp-for="State" required maxlength="50"/>
+                <span asp-validation-for="State" class="validation" data-title="State is required"></span>
+            </div>
+        </div>
+    </div>
+    <div class="btn-div" style="display: flex">
+        <input value="Back" type="submit" onclick="prevClick()" asp-controller="Register" asp-action="ConfirmAddress" asp-route-button="prev">
+        <input value="Next" type="submit" onclick="nextClick()" asp-controller="Register" asp-action="ConfirmAddress" asp-route-button="next">
+    </div>  
+</form>

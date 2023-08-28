@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - TechTask</title>
+    <link rel="stylesheet" href="~/css/steps.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body>
+<header>
+    <p style="font-size: large; margin-bottom: 0">New User Registration</p>
+    <p style="font-size: small; margin-top: 5px">@ViewData["StepInfo"]</p>
+</header>
+<div class="div-flex">
+    <div style="margin-left: 50px">
+        <div class="progress-container">
+            <div class="progress" id="progress_step_path"></div>
+            <ul class="step-progress">        
+                <li class="step active_step"><span class="circle2 active">1</span><span class="text">Contact info</span></li>
+                <li class="step"><span class="circle2">2</span><a class="text">Areas</a></li>
+                <li class="step"><span class="circle2">3</span><a class="text">Address</a></li>
+                <li class="step"><span class="circle2">4</span><a class="text">Password</a></li>
+                <li class="step"><span class="circle2">5</span><a class="text">Completed</a></li>
+            </ul>
+        </div>
+        <div style="margin-top:450px">
+            <a>Back To login</a>
+        </div>
+    </div>
+    <div class="verticalLine"></div>
+    @RenderBody()
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+            let inputs = document.getElementsByTagName("input");
+            for(let i = 0; i < inputs.length; i++) {
+                if (!inputs[i].checkValidity()){ 
+                    inputs[i].style.backgroundColor = 'rgba(252,145,57,0.27)';
+                    let siblingSpan = inputs[i].parentElement.querySelector('span');
+                    if(siblingSpan) {
+                        siblingSpan.style.display = 'inline';
+                    }
+                }
+            }}
+        </script>
+    }
+</div>
+<script src="~/js/steps.js" asp-append-version="true"></script>
+<script src="~/js/phoneMask.js" asp-append-version="true"></script>
+<script src="~/js/validation.js" asp-append-version="true"></script>
+</body>
+</html>

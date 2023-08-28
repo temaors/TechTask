@@ -1,0 +1,328 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 220px;
+}
+
+.progress {
+    background-color: 1px solid #1392cc;
+    position: absolute;
+    top: 0%;
+    left: 14px;
+//transform: translateY(-50%);
+    width: 2px;
+//width: 0%;
+    height: 0%;
+    z-index: -1;
+    transition: .4s ease;
+}
+
+.progress-container::before {
+    content: ' ';
+    background-color: #1392cc;
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 2px;
+    z-index: -1;
+}
+.step-progress {
+    list-style:none;
+    margin:0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+& li {
+      display: grid;
+      grid-template-columns: fit-content(28px) auto;
+  }
+}
+.text {
+    color:gray;
+    text-align:left;
+    display: flex;
+    height: 100%;
+    line-height: 28px;
+    margin-left:8px;
+    font-size:12px;
+    font-weight:500;
+}
+.active_step .text {
+    color: gray;
+}
+.circle, .circle2 {
+    background-color: #fff;
+    border-radius: 50%;
+    color: #1392cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:12px;
+    border: 2px solid #1392cc;
+    font-size: 12px;
+    font-weight:700;
+    height: 28px;
+    width: 28px;
+    transition: .4s ease;
+}
+
+.circle.active, .circle2.active {
+    border-color: 1px solid #1392cc;
+    color: #fff;
+    background-color: #1392cc;
+}
+.progress .circle:last-child,
+.step-progress .step:last-child .circle2 {
+    margin-bottom: 0;
+}
+.btn {
+    background-color: #1392cc;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 28px;
+    margin: 5px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+    
+}
+
+.btn:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.btn:focus {
+    outline: none;
+}
+.verticalLine {
+    border-left: 1px solid gray;
+    height: 650px;
+}
+.div-flex{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.div-margin-13p{
+    margin: 13px;
+}
+
+.div-margin-10p{
+    margin: 10px;
+}
+
+.email-text{
+    font-size: 10px;
+}
+
+/*.btn-div input {*/
+/*    position: absolute;*/
+/*    top: 30vw;*/
+/*    left: 75vw;*/
+/*}*/
+
+/*.btn-div-back input {*/
+/*    position: absolute;*/
+/*    top: 30vw;*/
+/*    left: 65vw;*/
+/*}*/
+
+.div-form{
+    width: 350px;
+    display: flex;
+    margin: 10px;
+}
+
+label{
+    font-family: "PT Sans", serif;
+}
+
+p{
+    font-family: "PT Sans", serif;
+}
+
+h3{
+    font-family: "PT Sans", serif;
+}
+
+a{
+    font-family: "PT Sans", serif;
+}
+
+.btn-div {
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    /*margin: 0 auto;*/
+    /*position: relative;*/
+    float: right;
+    vertical-align: bottom;
+}
+
+.star{
+    color: #1392cc;
+    margin-right: 3px;
+}
+
+input{
+    border-radius: 0;
+    border: 1px solid rgba(130, 159, 180, 0.55);
+}
+
+.area_checkbox{
+    border-radius: 0;
+}
+
+select{
+    border-radius: 0;
+    border: 1px solid rgba(130, 159, 180, 0.55);
+}
+
+.text-danger:hover::after{
+    content: "Error" attr(data-title); /* Выводим текст */
+    width: 90px;
+    height: 50px;
+    position: absolute; /* Абсолютное позиционирование */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgb(255, 255, 255); /* Полупрозрачный цвет фона */
+    color: #020202; /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    border: 1px solid #333; /* Параметры рамки */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 3px;
+}
+
+.div-text-danger{
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #ff4400;
+    width: 8px;
+    height: 8px;
+}
+
+.text-danger{
+    color: white;
+    margin-left: 8px;
+    font-size: 8px;
+    
+    border-radius: 20px;
+}
+
+.validation {
+    margin-top: 3px;
+    margin-left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 11px;
+    background-color: rgb(255, 50, 0);
+    color: rgb(247, 247, 247);
+    font-family: "Phosphate", serif;
+    display: none;
+}
+
+.password-validation-mark{
+    margin-top: 3px;
+    margin-left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 11px;
+    background-color: rgb(255, 50, 0);
+    color: rgb(247, 247, 247);
+}
+
+.validation:hover::after{
+    padding: 5px;
+    content: attr(data-title); /* Выводим текст */
+    width: 180px;
+    height: 75px;
+    position: absolute; /* Абсолютное позиционирование */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgb(255, 255, 255); /* Полупрозрачный цвет фона */
+    color: #020202; /* Цвет текста */
+    text-align: left; /* Выравнивание текста по центру */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    /*border: 1px solid #333; !* Параметры рамки *!*/
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 3px;
+}
+
+.textarea-size-none{
+    resize: none;
+}
+
+
+.password-instructions {
+    width: 175px;
+    height: 155px;
+    margin-left: 26px;
+    background: #c6c6c6;
+    position: relative;
+    font-size: 11px;
+    padding-top: 15px;
+}
+.password-instructions:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    border-top: -12px solid transparent;
+    border-right: 24px solid #c6c6c6;
+    border-bottom: 12px solid transparent;
+}
+.text-password-instructions{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 20px;
+}
+
+.label-contact-info{
+    float:right;
+    text-align: right;
+    width: 175px;
+    margin-right:7px;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.label-address{
+    text-align: left;
+    margin-right:7px;
+    font-size: 12px;
+    margin-top: 3px;
+    /*border-radius: 0;*/
+}
+
+.input-areas{
+    font-family: "PT Sans", serif;
+    font-size: 10px;
+    border-radius: 0;
+}

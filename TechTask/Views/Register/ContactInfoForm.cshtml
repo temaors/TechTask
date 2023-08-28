@@ -1,0 +1,97 @@
+@using TechTask.Models.Enums
+@model ContactInfoViewModel?
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<form asp-controller="Register" asp-action="ConfirmContactInfo" novalidate>
+    <div class="div-flex">
+        <div>
+            <div class="div-form">
+                @{
+                    var greetings = Enum.GetValues(typeof(Salutations));
+                    var selectList = new SelectList(greetings);
+                    ViewBag.Salut = selectList;
+                    if (Model != null)
+                    {
+                        foreach (var greeting in selectList)
+                        {
+                            if (greeting.Value == Model.Salutation)
+                            {
+                                greeting.Selected = true;
+                            }
+                        }
+                        ViewBag.Salut = selectList;
+                    }
+                }
+                <label class="label-contact-info" asp-for="Salutation"><strong class="star">* </strong>SALUTATION:</label>
+                <select asp-for="Salutation" asp-items="ViewBag.Salut" style="width: 41%" required></select>
+                <span asp-validation-for="Salutation" class="validation" data-title="Salutation is required"></span>
+            </div>
+            <br>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="FirstName"><strong class="star">* </strong>FIRST NAME:</label>
+                <input type="text" asp-for="FirstName" required/>
+                <span asp-validation-for="FirstName" class="validation" data-title="First Name is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="MiddleName">MIDDLE NAME:</label>
+                <input type="text" asp-for="MiddleName" maxlength="50"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="LastName"><strong class="star">* </strong>LAST NAME:</label>
+                <input type="text" asp-for="LastName" maxlength="50" required/>
+                <span asp-validation-for="LastName" class="validation" data-title="Last Name is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Company"><strong class="star">* </strong>COMPANY:</label>
+                <input type="text" asp-for="Company"  maxlength="50" required/>
+                <span asp-validation-for="Company" class="validation" data-title="Company Name is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Title"><strong class="star">* </strong>TITLE:</label>
+                <input type="text" asp-for="Title"  maxlength="50" required/>
+                <span asp-validation-for="Title" class="validation" data-title="Title is required"></span>
+            </div>
+        </div>
+        <div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Email"><strong class="star">* </strong>EMAIL:</label>
+                <input type="text" asp-for="Email"  maxlength="50" required/>
+                <span asp-validation-for="Email" class="validation" data-title="Email is required"></span>
+            </div>
+            <div style="text-align: right">
+                <p style="margin-bottom: 10px; font-size: 10px; margin-right:40px">
+                    EMAIL WILL BE YOUR LOGIN
+                </p>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="EmailConfirmation"><strong class="star">* </strong>CONFIRM EMAIL:</label>
+                <input type="text" asp-for="EmailConfirmation"  maxlength="50" required/>
+                <span asp-validation-for="EmailConfirmation" class="validation" data-title="Emails must be the same"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Phone"><strong class="star">* </strong>PHONE:</label>
+                <input type="text" data-js="input" asp-for="Phone" placeholder="(   ) -" required/>
+                <span asp-validation-for="Phone" id="phone" class="validation" data-title="Phone is required"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Fax">FAX:</label>
+                <input type="text" data-js="input_fax" asp-for="Fax" placeholder="(   ) -"/>
+                <span asp-validation-for="Fax" id="fax" class="validation"></span>
+            </div>
+            <div class="div-form">
+                <label class="label-contact-info" asp-for="Mobile">MOBILE:</label>
+                <input type="text" data-js="input_mobile" asp-for="Mobile" placeholder="(   ) -"/>
+                <span asp-validation-for="Mobile" id="mobile" class="validation"></span>
+            </div>
+        </div>
+    </div>
+    <div class="btn-div btn-style">
+        <input value="Next" type="submit" onclick="nextClick(@ViewData.ModelState.IsValid)"
+               asp-controller="Register" asp-action="ConfirmContactInfo" asp-route-button="next">
+    </div>
+</form>
